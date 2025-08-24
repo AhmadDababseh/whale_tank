@@ -3,13 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Submit Your Pitch | Crypto Whale Tank</title>
+  <title>Submit Your Pitch | Whale Tank</title>
   <link rel="stylesheet" href="submit.css"/>
 </head>
 <body>
-  <!-- Header -->
   <header>
-    <div class="logo">🦈 Crypto Whale Tank</div>
+    <div class="logo">🦈 Whale Tank</div>
     <nav>
       <a href="index.html">Home</a>
       <a href="#">WT Token</a>
@@ -17,64 +16,51 @@
     </nav>
   </header>
 
-  <!-- Form Section -->
   <section class="form-wrapper">
     <h1>Submit Your Pitch</h1>
-    <p class="intro">Complete the application below. Only projects with full details and whitepaper uploads will be considered.</p>
+    <p class="intro">Complete the application below. Only projects with full details will be considered.</p>
 
-    <!-- FIX: method/action belong on the FORM, not the section -->
-    <form id="pitchForm"
-          action="https://formspree.io/f/xandwbvg"
-          method="POST"
-          enctype="multipart/form-data"
-          accept-charset="UTF-8">
-      <!-- General Information -->
+    <!-- ✅ Correct form -->
+    <form action="https://formspree.io/f/xandwbvg" method="POST">
       <fieldset>
         <legend>General Information</legend>
-        <input type="text" name="founder_team_name" placeholder="Founder / Team Name" required />
-        <input type="email" name="contact_email" placeholder="Contact Email" required />
-        <input type="text" name="project_title" placeholder="Project Title" required />
-        <input type="text" name="project_website" placeholder="Project Website (if any)" />
-        <label class="file-label">Upload Whitepaper (PDF/DOC)
-          <input type="file" name="whitepaper" accept=".pdf,.doc,.docx" required />
-        </label>
+        <input type="text" name="founder_team_name" placeholder="Founder / Team Name" required>
+        <input type="email" name="contact_email" placeholder="Contact Email" required>
+        <input type="text" name="project_title" placeholder="Project Title" required>
+        <input type="text" name="project_website" placeholder="Project Website (if any)">
+        <!-- ❌ File uploads only on paid Formspree plan -->
       </fieldset>
 
-      <!-- Monetization Strategy -->
       <fieldset>
         <legend>Monetization Strategy</legend>
         <textarea name="business_model" placeholder="What is your business model?" rows="4" required></textarea>
-        <textarea name="revenue_streams_tokenomics" placeholder="Revenue Streams & Tokenomics" rows="4" required></textarea>
+        <textarea name="revenue_streams" placeholder="Revenue Streams & Tokenomics" rows="4" required></textarea>
       </fieldset>
 
-      <!-- Investment Pitch -->
       <fieldset>
         <legend>Investment Pitch</legend>
-        <input type="number" name="funding_required_usd" placeholder="Funding Required (USD)" step="0.01" min="0" required />
-        <input type="text" name="equity_token_share_offered" placeholder="Equity/Token Share Offered (e.g. 10% tokens)" />
-        <textarea name="competitive_advantage" placeholder="Competitive Advantage (Why should investors back you?)" rows="4" required></textarea>
+        <input type="number" name="funding_required" placeholder="Funding Required (USD)" required>
+        <input type="text" name="equity_share" placeholder="Equity/Token Share Offered (e.g. 10% tokens)">
+        <textarea name="competitive_advantage" placeholder="Competitive Advantage" rows="4" required></textarea>
       </fieldset>
 
-      <!-- Future Plans -->
       <fieldset>
         <legend>Future Plans</legend>
-        <textarea name="short_term_roadmap" placeholder="Short-term Roadmap (next 6–12 months)" rows="4" required></textarea>
-        <textarea name="long_term_vision" placeholder="Long-term Vision (3–5 years)" rows="4" required></textarea>
-        <textarea name="scalability_strategy" placeholder="Scalability & Global Expansion Strategy" rows="4"></textarea>
+        <textarea name="short_term" placeholder="Short-term Roadmap" rows="4" required></textarea>
+        <textarea name="long_term" placeholder="Long-term Vision" rows="4" required></textarea>
+        <textarea name="scalability" placeholder="Scalability & Expansion Strategy" rows="4"></textarea>
       </fieldset>
 
-      <!-- Buttons -->
       <div class="form-buttons">
         <button type="submit" class="btn">Submit Pitch</button>
-        <button type="reset" class="btn" value="Reset">Reset</button>
+        <button type="reset" class="btn">Reset</button>
       </div>
     </form>
   </section>
 
-  <!-- Footer -->
   <footer>
-    <p>&copy; 2025 Crypto Whale Tank. Powered by Web3.</p>
+    <p>&copy; 2025 Whale Tank. Powered by Web3.</p>
   </footer>
+  
 </body>
 </html>
-
