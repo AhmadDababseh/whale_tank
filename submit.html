@@ -75,45 +75,6 @@
   <footer>
     <p>&copy; 2025 Crypto Whale Tank. Powered by Web3.</p>
   </footer>
-
-  <!-- Optional JS: AJAX submit + inline success/failure messaging -->
-  <script>
-    (function () {
-      const form = document.getElementById('pitchForm');
-      if (!form) return;
-
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault(); // keep user on the page
-        const data = new FormData(form);
-
-        try {
-          const resp = await fetch(form.action, {
-            method: 'POST',
-            body: data,
-            headers: { 'Accept': 'application/json' }
-          });
-
-          if (resp.ok) {
-            form.reset();
-            alert('Submission complete');
-          } else {
-            let msg = 'Submission failed.';
-            try {
-              const json = await resp.json();
-              if (json && json.errors && json.errors.length) {
-                msg = json.errors.map(e => e.message).join(', ');
-              } else if (json && json.message) {
-                msg = json.message;
-              }
-            } catch (_) {}
-            alert(msg);
-          }
-        } catch (err) {
-          alert('Network error. Please try again.');
-          console.error(err);
-        }
-      }, { passive: false });
-    })();
-  </script>
 </body>
 </html>
+
