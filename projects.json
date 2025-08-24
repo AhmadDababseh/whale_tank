@@ -1,0 +1,62 @@
+[
+  {
+    "founder": "Alice Blockchain",
+    "email": "alice@blockchain.com",
+    "projectTitle": "DeFi Lending Protocol",
+    "website": "https://defilend.io",
+    "whitepaper": "defilend_whitepaper.pdf",
+    "businessModel": "Decentralized lending platform allowing instant crypto-backed loans.",
+    "tokenomics": "Interest fees on loans, staking rewards for liquidity providers.",
+    "fundingRequiredUSD": 500000,
+    "equityOffered": "10% tokens",
+    "competitiveAdvantage": "First platform with automated collateral liquidation and cross-chain support.",
+    "shortTermRoadmap": "Launch MVP, onboard initial liquidity providers, start marketing campaign.",
+    "longTermVision": "Become the leading DeFi lending protocol across multiple blockchains in 3 years.",
+    "scalabilityPlan": "Integrate with Layer 2 solutions and partner with other DeFi protocols."
+  },
+  {
+    "founder": "Bob NFT",
+    "email": "bob@nftmusic.io",
+    "projectTitle": "NFT Music Hub",
+    "website": "https://nftmusichub.io",
+    "whitepaper": "nftmusichub_whitepaper.pdf",
+    "businessModel": "Marketplace for artists to tokenize and sell their music rights as NFTs.",
+    "tokenomics": "Transaction fees, royalties automatically distributed on-chain.",
+    "fundingRequiredUSD": 600000,
+    "equityOffered": "8% tokens",
+    "competitiveAdvantage": "Direct royalty payments, blockchain-verified ownership, NFT collectibles for fans.",
+    "shortTermRoadmap": "Launch beta marketplace, onboard 50 artists, integrate Ethereum and Solana networks.",
+    "longTermVision": "Global music NFT marketplace with artist DAO governance.",
+    "scalabilityPlan": "Expand to multiple blockchains, enable cross-platform royalty tracking."
+  },
+  {
+    "founder": "Charlie Green",
+    "email": "charlie@greenchain.org",
+    "projectTitle": "GreenChain",
+    "website": "https://greenchain.org",
+    "whitepaper": "greenchain_whitepaper.pdf",
+    "businessModel": "Blockchain platform for carbon credit trading and tracking.",
+    "tokenomics": "Transaction fees on carbon credit trading, staking rewards for validators.",
+    "fundingRequiredUSD": 750000,
+    "equityOffered": "12% tokens",
+    "competitiveAdvantage": "Transparent, traceable, and verifiable carbon credits on-chain.",
+    "shortTermRoadmap": "Partner with environmental NGOs, pilot program with 5 companies.",
+    "longTermVision": "Global adoption for carbon credit trading, integrate IoT tracking.",
+    "scalabilityPlan": "Add additional ecosystems, partner with governments and corporations."
+  },
+  {
+    "founder": "Diana Games",
+    "email": "diana@play2earn.io",
+    "projectTitle": "Play2Earn Metaverse",
+    "website": "https://play2earn.io",
+    "whitepaper": "play2earn_whitepaper.pdf",
+    "businessModel": "Metaverse game where players earn tokens via gameplay and trading.",
+    "tokenomics": "In-game token rewards, NFT marketplace for virtual assets.",
+    "fundingRequiredUSD": 1000000,
+    "equityOffered": "15% tokens",
+    "competitiveAdvantage": "Early mover advantage in gamified blockchain metaverse with tokenized assets.",
+    "shortTermRoadmap": "Beta launch, recruit initial players, NFT marketplace setup.",
+    "longTermVision": "Global metaverse gaming economy with decentralized governance.",
+    "scalabilityPlan": "Integrate AR/VR experiences, multi-chain NFT interoperability."
+  }
+]

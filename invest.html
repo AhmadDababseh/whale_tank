@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invest in Web3 Startups</title>
+  <link rel="stylesheet" href="invest.css">
+</head>
+<body>
+  <header>
+    <div class="logo">🦈 Crypto Whale Tank</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="https://etherscan.io/token/0x582d872a1b094fc48f5de31d3b73f2d9be47def1">ST Token</a>
+      <a href="#invest">Invest</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="invest-hero">
+    <div class="hero-content">
+      <h1>Investment Opportunities</h1>
+      <p>Browse projects and back the next blockchain unicorn.</p>
+    </div>
+  </section>
+
+  <section class="projects" id="projects-container">
+    <!-- Projects loaded from JSON -->
+  </section>
+
+  <!-- Modal -->
+  <div id="project-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 Crypto Whale Tank. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    const modal = document.getElementById("project-modal");
+    const modalBody = document.getElementById("modal-body");
+    const closeBtn = document.querySelector(".close");
+
+    closeBtn.onclick = () => modal.style.display = "none";
+    window.onclick = e => { if(e.target == modal) modal.style.display = "none"; };
+
+    async function loadProjects() {
+      try {
+        const response = await fetch("projects.json");
+        const projects = await response.json();
+        const container = document.getElementById("projects-container");
+
+        projects.forEach((project, index) => {
+          const card = document.createElement("div");
+          card.classList.add("project-card");
+
+          card.innerHTML = `
+            <h2>${project.projectTitle}</h2>
+            <p><strong>Founder / Team:</strong> ${project.founder}</p>
+            <p><strong>Contact Email:</strong> ${project.email}</p>
+            <p><strong>Website:</strong> <a href="${project.website}" target="_blank">${project.website}</a></p>
+            <div class="actions">
+              <button class="btn view-details" data-index="${index}">View Details</button>
+              <a href="#" class="btn invest-btn">Invest Now</a>
+            </div>
+          `;
+
+          container.appendChild(card);
+        });
+
+        // Add event listeners for modal buttons
+        document.querySelectorAll(".view-details").forEach(btn => {
+          btn.addEventListener("click", e => {
+            const proj = projects[btn.dataset.index];
+            modalBody.innerHTML = `
+              <h2>${proj.projectTitle}</h2>
+              <p><strong>Business Model:</strong> ${proj.businessModel}</p>
+              <p><strong>Revenue & Tokenomics:</strong> ${proj.tokenomics}</p>
+              <p><strong>Funding Required (USD):</strong> ${proj.fundingRequiredUSD}</p>
+              <p><strong>Equity / Tokens Offered:</strong> ${proj.equityOffered}</p>
+              <p><strong>Competitive Advantage:</strong> ${proj.competitiveAdvantage}</p>
+              <p><strong>Short-Term Roadmap:</strong> ${proj.shortTermRoadmap}</p>
+              <p><strong>Long-Term Vision:</strong> ${proj.longTermVision}</p>
+              <p><strong>Scalability & Expansion:</strong> ${proj.scalabilityPlan}</p>
+              <p><strong>Whitepaper:</strong> <a href="${proj.whitepaper}" target="_blank">Download</a></p>
+            `;
+            modal.style.display = "block";
+          });
+        });
+
+      } catch (error) {
+        console.error("Error loading projects:", error);
+      }
+    }
+
+    loadProjects();
+  </script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submit Your Pitch | Crypto Whale Tank</title>
+  <link rel="stylesheet" href="submit.css">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">🦈 Crypto Whale Tank</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="https://etherscan.io/token/0x582d872a1b094fc48f5de31d3b73f2d9be47def1">ST Token</a>
+      <a href="invest.html">Invest</a>
+    </nav>
+  </header>
+
+  <!-- Form Section -->
+  <section class="form-wrapper" action="https://formspree.io/f/xandwbvg">
+    <h1>Submit Your Pitch</h1>
+    <p class="intro">Complete the application below. Only projects with full details and whitepaper uploads will be considered.</p>
+
+    <form enctype="multipart/form-data">
+      <!-- General Information -->
+      <fieldset>
+        <legend>General Information</legend>
+        <input type="text" placeholder="Founder / Team Name" required>
+        <input type="email" placeholder="Contact Email" required>
+        <input type="text" placeholder="Project Title" required>
+        <input type="url" placeholder="Project Website (if any)" required>
+        <label class="file-label">Upload Whitepaper (PDF/DOC)
+          <input type="file" accept=".pdf,.doc,.docx" required>
+        </label>
+      </fieldset>
+
+      <!-- Monetization Strategy -->
+      <fieldset>
+        <legend>Monetization Strategy</legend>
+        <textarea placeholder="What is your business model?" rows="4" required></textarea>
+        <textarea placeholder="Revenue Streams & Tokenomics" rows="4" required></textarea>
+      </fieldset>
+
+      <!-- Investment Pitch -->
+      <fieldset>
+        <legend>Investment Pitch</legend>
+        <input type="number" placeholder="Funding Required (USD)" required>
+        <input type="text" placeholder="Equity/Token Share Offered (e.g. 10% tokens)">
+        <textarea placeholder="Competitive Advantage (Why should investors back you?)" rows="4" required></textarea>
+      </fieldset>
+
+      <!-- Future Plans -->
+      <fieldset>
+        <legend>Future Plans</legend>
+        <textarea placeholder="Short-term Roadmap (next 6–12 months)" rows="4" required></textarea>
+        <textarea placeholder="Long-term Vision (3–5 years)" rows="4" required></textarea>
+        <textarea placeholder="Scalability & Global Expansion Strategy" rows="4"></textarea>
+      </fieldset>
+
+      <!-- Buttons -->
+      <div class="form-buttons">
+        <button type="submit" class="btn" >Submit Pitch</button>
+        <button type="reset" value="Reset" class="btn">Reset</button>
+      </div>
+    </form>
+  </section>
+<script>
+const form = document.querySelector(".pitch-form");
+
+form.addEventListener("submit", async e => {
+  e.preventDefault();
+
+  const formData = new FormData(form);
+
+  // Convert FormData to JSON
+  const jsonData = {
+    founder: formData.get("founder-name"),
+    email: formData.get("email"),
+    projectTitle: formData.get("startup-name"),
+    website: formData.get("website"),
+    whitepaper: formData.get("whitepaper") ? formData.get("whitepaper").name : "",
+    businessModel: formData.get("revenue-model"),
+    tokenomics: formData.get("tokenomics"),
+    fundingRequiredUSD: formData.get("funding-required"),
+    equityOffered: formData.get("equity"),
+    competitiveAdvantage: formData.get("pitch-summary"),
+    shortTermRoadmap: formData.get("roadmap"),
+    longTermVision: formData.get("long-term-vision") || "",
+    scalabilityPlan: formData.get("scalability-plan") || ""
+  };
+
+  try {
+    const response = await fetch("http://localhost:3000/submit-project", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(jsonData)
+    });
+
+    const result = await response.json();
+    alert(result.message); // "Submission complete"
+    form.reset();
+
+  } catch (err) {
+    alert("Error submitting project");
+    console.error(err);
+  }
+});
+</script>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Crypto Whale Tank. Powered by Web3.</p>
+  </footer>
+</body>
+</html>
