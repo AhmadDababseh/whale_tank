@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Submit Your Pitch | Crypto Whale Tank</title>
-  <link rel="stylesheet" href="submit.css">
+  <link rel="stylesheet" href="submit.css"/>
 </head>
 <body>
   <!-- Header -->
@@ -12,56 +12,61 @@
     <div class="logo">🦈 Crypto Whale Tank</div>
     <nav>
       <a href="index.html">Home</a>
-      <a href="">WT Token</a>
+      <a href="#">WT Token</a>
       <a href="invest.html">Invest</a>
     </nav>
   </header>
 
   <!-- Form Section -->
-  <section class="form-wrapper" method="POST" action="https://formspree.io/f/xandwbvg">
+  <section class="form-wrapper">
     <h1>Submit Your Pitch</h1>
     <p class="intro">Complete the application below. Only projects with full details and whitepaper uploads will be considered.</p>
 
-    <form enctype="multipart/form-data">
+    <!-- FIX: method/action belong on the FORM, not the section -->
+    <form id="pitchForm"
+          action="https://formspree.io/f/xandwbvg"
+          method="POST"
+          enctype="multipart/form-data"
+          accept-charset="UTF-8">
       <!-- General Information -->
       <fieldset>
         <legend>General Information</legend>
-        <input type="text" placeholder="Founder / Team Name" required>
-        <input type="email" placeholder="Contact Email" required>
-        <input type="text" placeholder="Project Title" required>
-        <input type="text" placeholder="Project Website (if any)">
+        <input type="text" name="founder_team_name" placeholder="Founder / Team Name" required />
+        <input type="email" name="contact_email" placeholder="Contact Email" required />
+        <input type="text" name="project_title" placeholder="Project Title" required />
+        <input type="text" name="project_website" placeholder="Project Website (if any)" />
         <label class="file-label">Upload Whitepaper (PDF/DOC)
-          <input type="file" accept=".pdf,.doc,.docx" required>
+          <input type="file" name="whitepaper" accept=".pdf,.doc,.docx" required />
         </label>
       </fieldset>
 
       <!-- Monetization Strategy -->
       <fieldset>
         <legend>Monetization Strategy</legend>
-        <textarea placeholder="What is your business model?" rows="4" required></textarea>
-        <textarea placeholder="Revenue Streams & Tokenomics" rows="4" required></textarea>
+        <textarea name="business_model" placeholder="What is your business model?" rows="4" required></textarea>
+        <textarea name="revenue_streams_tokenomics" placeholder="Revenue Streams & Tokenomics" rows="4" required></textarea>
       </fieldset>
 
       <!-- Investment Pitch -->
       <fieldset>
         <legend>Investment Pitch</legend>
-        <input type="number" placeholder="Funding Required (USD)" required>
-        <input type="text" placeholder="Equity/Token Share Offered (e.g. 10% tokens)">
-        <textarea placeholder="Competitive Advantage (Why should investors back you?)" rows="4" required></textarea>
+        <input type="number" name="funding_required_usd" placeholder="Funding Required (USD)" step="0.01" min="0" required />
+        <input type="text" name="equity_token_share_offered" placeholder="Equity/Token Share Offered (e.g. 10% tokens)" />
+        <textarea name="competitive_advantage" placeholder="Competitive Advantage (Why should investors back you?)" rows="4" required></textarea>
       </fieldset>
 
       <!-- Future Plans -->
       <fieldset>
         <legend>Future Plans</legend>
-        <textarea placeholder="Short-term Roadmap (next 6–12 months)" rows="4" required></textarea>
-        <textarea placeholder="Long-term Vision (3–5 years)" rows="4" required></textarea>
-        <textarea placeholder="Scalability & Global Expansion Strategy" rows="4"></textarea>
+        <textarea name="short_term_roadmap" placeholder="Short-term Roadmap (next 6–12 months)" rows="4" required></textarea>
+        <textarea name="long_term_vision" placeholder="Long-term Vision (3–5 years)" rows="4" required></textarea>
+        <textarea name="scalability_strategy" placeholder="Scalability & Global Expansion Strategy" rows="4"></textarea>
       </fieldset>
 
       <!-- Buttons -->
       <div class="form-buttons">
-        <button type="submit" class="btn" >Submit Pitch</button>
-        <button type="reset" value="Reset" class="btn">Reset</button>
+        <button type="submit" class="btn">Submit Pitch</button>
+        <button type="reset" class="btn" value="Reset">Reset</button>
       </div>
     </form>
   </section>
@@ -70,9 +75,45 @@
   <footer>
     <p>&copy; 2025 Crypto Whale Tank. Powered by Web3.</p>
   </footer>
+
+  <!-- Optional JS: AJAX submit + inline success/failure messaging -->
+  <script>
+    (function () {
+      const form = document.getElementById('pitchForm');
+      if (!form) return;
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault(); // keep user on the page
+        const data = new FormData(form);
+
+        try {
+          const resp = await fetch(form.action, {
+            method: 'POST',
+            body: data,
+            headers: { 'Accept': 'application/json' }
+          });
+
+          if (resp.ok) {
+            form.reset();
+            alert('Submission complete');
+          } else {
+            let msg = 'Submission failed.';
+            try {
+              const json = await resp.json();
+              if (json && json.errors && json.errors.length) {
+                msg = json.errors.map(e => e.message).join(', ');
+              } else if (json && json.message) {
+                msg = json.message;
+              }
+            } catch (_) {}
+            alert(msg);
+          }
+        } catch (err) {
+          alert('Network error. Please try again.');
+          console.error(err);
+        }
+      }, { passive: false });
+    })();
+  </script>
 </body>
 </html>
-
-
-
-
